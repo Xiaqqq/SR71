@@ -1,0 +1,125 @@
+local rp = game:GetService('ReplicatedStorage')
+local wrk = game:GetService('Workspace')
+local tps = game:GetService('TeleportService')
+local sg = game:GetService('StarterGui')
+local Plr = game:GetService('Players')
+local _RS = game:GetService('RunService')
+
+
+local _OBJ = wrk:WaitForChild('CollectibleDiamonds')
+
+local _AC
+local _FIN
+
+local LPlr = Plr.LocalPlayer
+local LChar = LPlr.Character
+
+local NoOBJ = false
+local CollectedAllOBJ = false
+local CD = false
+
+if game:IsLoaded() then
+
+if game.PlaceId == 1765700510 or game.PlaceId == 4686746335 then
+
+ local Success = Instance.new('Sound')
+ Success.Name = 'SR-71 ONTOP FAGGOTS, FUCK ROYALE HIGH FUCKING FAGGOTS.'
+ Success.SoundId = 'rbxassetid://186554413'
+ Success.Volume = 2
+ Success.Parent = rp
+ Success:Play()
+ Success.Ended:Connect(function(soundId)
+    Success:Destroy()
+ end)
+
+sg:SetCore('SendNotification',{
+Title = 'SR-71';
+Text = 'initializing farm..';
+Duration = 5;
+Button1 = 'Alright ツ';
+Button2 = 'Fuck off lol..';
+})
+
+_AC = _RS.RenderStepped:Connect(function()
+    if #_OBJ:GetChildren() == 0 then
+        _AC:Disconnect()
+        sg:SetCore('SendNotification',{
+            Title = 'SR-71';
+            Text = 'No Diamonds Here, Server Hopping..';
+            Duration = 2;
+        })
+        NoOBJ = true
+        if NoOBJ then
+        if not CD then
+        warn('server hopping lol')
+        CD = true    
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Xiaqqq/SR71/main/SR71_SERVERHOP'))()
+        task.wait(10)
+        CD = false
+        end
+        end
+        
+    else
+    if _OBJ.Parent == wrk then
+        for _,v in pairs(_OBJ:GetChildren()) do
+            LChar.HumanoidRootPart.CFrame = v.CFrame
+            _OBJ.Changed:Connect(function()
+            LChar.HumanoidRootPart.CFrame = v.CFrame
+            end)
+        end
+        _OBJ.ChildRemoved:Connect(function()
+           if #_OBJ:GetChildren() == 0 then
+            _AC:Disconnect()
+            sg:SetCore('SendNotification',{
+                Title = 'SR-71';
+                Text = 'Farmming done, Server hopping..';
+                Duration = 2;
+            })
+            CollectedAllOBJ = true 
+            if CollectedAllOBJ then
+            if not CD then
+            warn('server hopping lol')
+            CD = true    
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/Xiaqqq/SR71/main/SR71_SERVERHOP'))()
+            task.wait(10)
+            CD = false
+            end
+            end
+                end 
+            end)
+        end    
+    end
+end)
+
+else
+
+sg:SetCore('SendNotification',{
+Title = 'SR-71';
+Text = 'Invaild Place.';
+Duration = 2;
+
+Button1 = 'Okay ツ';
+Button2 = 'Okay.. fuck off.'
+})
+
+local wronggamenoob = Instance.new('Sound')
+wronggamenoob.Name = 'SR-71 ONTOP FAGGOTS, FUCK ROYALE HIGH FUCKING FAGGOTS.'
+wronggamenoob.Parent = rp
+wronggamenoob.SoundId = 'rbxassetid://1270467132'
+wronggamenoob.Volume = 0.2
+wronggamenoob:Play()
+wronggamenoob.Ended:Connect(function(soundId)
+wronggamenoob:Destroy()
+end)
+
+end
+
+else
+
+    sg:SetCore('SendNotification',{
+        Title = 'SR-71';
+        Text = 'Loading Auto Farm';
+    })
+    game.Loaded:Wait()
+    return
+end
