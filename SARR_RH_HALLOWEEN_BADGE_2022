@@ -1,0 +1,45 @@
+setclipboard('https://discord.gg/Hegq7trYff')
+
+_G.ReturnToOrginalPosition = false -- only if you want the badge lol
+
+local xts = 5589789252
+local _rs = game:GetService('RunService')
+local _sg = game:GetService('StarterGui')
+
+local plrs = game:GetService('Players')
+local plr = plrs.LocalPlayer
+
+local char_model = plr.Character
+local Humanoid = char_model:WaitForChild('Humanoid')
+local HumanoidRootPart = char_model:WaitForChild("HumanoidRootPart")
+local BadgeModel = game:GetService("Workspace"):WaitForChild('BadgeAwarder',warn('rejoin another game - SARR'))
+
+local LastPosition = 0
+
+
+if game.PlaceId == xts then
+    _sg:SetCore('SendNotification',{
+        Title = 'SARR';
+        Text = 'Thanks for using';
+    })
+    LastPosition = HumanoidRootPart.Position
+    HumanoidRootPart.CFrame = BadgeModel:WaitForChild('InsideBrickSensor').CFrame
+    HumanoidRootPart.Anchored = true
+    task.wait(0.50)
+    HumanoidRootPart.Anchored = false
+    if _G.ReturnToOrginalPosition then
+    HumanoidRootPart.CFrame = CFrame.new(LastPosition)
+    else return end
+else
+    _sg:SetCore('SendNotification',{
+        Title = 'SARR';
+        Text = 'Invalid experience';
+    })
+
+end
+
+_sg:SetCore('SendNotification',{
+    Title = 'SARR';
+    Text = 'Discord Server copied. Join our server for more scripts!';
+    Button1 = 'Ok'
+})
